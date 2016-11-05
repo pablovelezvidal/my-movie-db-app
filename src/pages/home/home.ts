@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component }     from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MoviesService } from '../../services/movies.service';
-//import {MovieInfo} from '../movie-info/movie-info';
+import { MovieDetailsPage }  from '../movie-details/movie-details';
  
 @Component({
     templateUrl: './home.html',
@@ -20,8 +20,7 @@ export class HomePage {
         if(event.target.value.length > 2) {
             this.moviesService.searchMovies(event.target.value).subscribe(
                 data => {
-                    this.movies = data.results; 
-                    console.log(data);
+                    this.movies = data.results;
                 },
                 err => {
                     console.log(err);
@@ -31,9 +30,10 @@ export class HomePage {
         }
     } 
    
-    /*itemTapped(event, movie) {
-        this.navController.push(MovieInfo, {
+    goToMovieDetails(event, movie) {
+      console.log("me llaman");
+        this.navController.push(MovieDetailsPage, {
             movie: movie
         });
-    }*/
+    }
 }
