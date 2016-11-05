@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { MoviesPage } from '../pages/movies/movies';
 import { MovieDetailsPage } from '../pages/movie-details/movie-details';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
+    MoviesPage,
     MovieDetailsPage
   ],
   imports: [
@@ -16,7 +16,7 @@ import { MovieDetailsPage } from '../pages/movie-details/movie-details';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
+    MoviesPage,
     MovieDetailsPage
   ],
   providers: []

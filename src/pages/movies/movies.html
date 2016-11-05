@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Movie List</ion-title>
+  </ion-navbar>
+</ion-header>
+ 
+
+<ion-content class="outer-content home" padding>
+  <ion-item>
+      <ion-input type="text" placeholder="Search a movie..." (input)="searchMovieDB($event, searchKey)"></ion-input>
+  </ion-item>
+  <ion-list> 
+    <ion-card *ngFor="let movie of movies" class="movies">
+
+      <ion-card-header>
+        <ion-item>
+          <ion-avatar item-left>
+            <img src="https://image.tmdb.org/t/p/w92{{movie.poster_path}}">
+          </ion-avatar>
+          {{movie.original_title}}
+          <button ion-button icon-left (click)="goToMovieDetails(movie)" clear item-right>
+            <ion-icon name="eye"></ion-icon>
+            Details
+          </button>
+        </ion-item>
+      </ion-card-header>
+
+      <ion-card-content class="outer-content">
+          <h3>About {{movie.original_title}}</h3>
+          <p class="item-description">{{movie.overview}}</p>
+      </ion-card-content>
+
+      <ion-item>
+        <button ion-button icon-left (click)="openAppShare(movie)" clear item-right>
+          <ion-icon name="share"></ion-icon>
+          Share
+        </button>
+      </ion-item>
+
+    </ion-card>
+  </ion-list>
+</ion-content>

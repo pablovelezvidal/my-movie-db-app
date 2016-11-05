@@ -4,11 +4,11 @@ import { MoviesService } from '../../services/movies.service';
 import { MovieDetailsPage }  from '../movie-details/movie-details';
  
 @Component({
-    templateUrl: './home.html',
+    templateUrl: './movies.html',
     providers: [MoviesService]
 })
  
-export class HomePage {
+export class MoviesPage {
  
     movies: Array<any>;
  
@@ -30,8 +30,7 @@ export class HomePage {
         }
     } 
    
-    goToMovieDetails(event, movie) {
-      console.log("me llaman");
+    goToMovieDetails(movie) {
         this.navController.push(MovieDetailsPage, {
             movie: movie
         });
