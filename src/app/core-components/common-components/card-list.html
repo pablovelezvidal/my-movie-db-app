@@ -1,0 +1,30 @@
+  <ion-list> 
+    <ion-card *ngFor="let movie of movies" class="movies">
+
+      <ion-card-header>
+        <ion-item>
+          <ion-avatar item-left>
+            <img src="https://image.tmdb.org/t/p/w92{{movie.poster_path}}">
+          </ion-avatar>
+          {{movie.original_title}}
+          <button ion-button icon-left  (click)="viewDetails($event, movie)" clear item-right>
+            <ion-icon name="eye"></ion-icon>
+            Details
+          </button>
+        </ion-item>
+      </ion-card-header>
+
+      <ion-card-content class="outer-content">
+          <h3>About {{movie.original_title}}</h3>
+          <p class="item-description">{{movie.overview}}</p>
+      </ion-card-content>
+
+      <ion-item>
+        <button ion-button icon-left (click)="openAppShare(movie)" clear item-right>
+          <ion-icon name="share"></ion-icon>
+          Share
+        </button>
+      </ion-item>
+
+    </ion-card>
+  </ion-list>

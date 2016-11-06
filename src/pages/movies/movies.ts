@@ -2,6 +2,7 @@ import { Component }     from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MoviesService } from '../../services/movies.service';
 import { MovieDetailsPage }  from '../movie-details/movie-details';
+import { Movie }  from '../../app/core-components/entities/movie';
  
 @Component({
     templateUrl: './movies.html',
@@ -9,14 +10,15 @@ import { MovieDetailsPage }  from '../movie-details/movie-details';
 })
  
 export class MoviesPage {
- 
-    movies: Array<any>;
+
+    movies: Movie[];
+    searchTitle: string = "Movies";
+    classList: string = "movies";
  
     constructor(private navController: NavController, private moviesService: MoviesService) {
- 
     }
    
-    searchMovieDB(event, key) {
+    searchItemsDB(event, key) {
         if(event.target.value.length > 2) {
             this.moviesService.searchMovies(event.target.value).subscribe(
                 data => {
@@ -25,14 +27,15 @@ export class MoviesPage {
                 err => {
                     console.log(err);
                 },
-                () => console.log('Movie Search Complete')
+                () => console.log("items loaded...")
             );
         }
     } 
    
     goToMovieDetails(movie) {
         this.navController.push(MovieDetailsPage, {
-            movie: movie
+            movie: movie.movie
         });
     }
+
 }
