@@ -11,21 +11,38 @@ export class SearchBarComponent {
   constructor() {}
 }
 
+/**************************************/
+
 //the lists card component
 @Component({
     selector: "card-list",
     templateUrl: "card-list.html"
 })
 export class CardListComponent {
-  @Input() movies: Array<any> = [];
+  @Input() items: Array<any> = [];
   //@Input() clickGoToDetails: any;
   @Output() clickGoToDetails: any = new EventEmitter(); 
 
   constructor() {}
 
-  viewDetails(event, movie) {
+  viewDetails(event, item) {
     //this.clickGoToDetails = event;
-    this.clickGoToDetails.emit({event:event, movie:movie});
+    this.clickGoToDetails.emit({event:event, item:item});
   }
+
+  processItemValues(item) {
+    item.img = "jueputa";
+    return item;
+  }
+
+  setCorrectValuesToItem(item){
+    //for the list, the api depending on what was called returns one value or other
+    //we put standard values for list depending on the passed input
+    item.img = item.poster_path ? item.poster_path : item.profile_path;
+    item.name = item.original_title ? item.original_title : item.name;
+    item.also_known_as_string = item.also_known_as ? item.also_known_as.join(', ') : '';
+
+  }
+
 
 }

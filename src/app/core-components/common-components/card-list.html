@@ -1,26 +1,29 @@
   <ion-list> 
-    <ion-card *ngFor="let movie of movies" class="movies">
-
+    <ion-card *ngFor="let item of items" class="movies" (onCreate)="setCorrectValuesToItem(item)">
+      
       <ion-card-header>
         <ion-item>
           <ion-avatar item-left>
-            <img src="https://image.tmdb.org/t/p/w92{{movie.poster_path}}">
+            <img src="https://image.tmdb.org/t/p/w92{{item.img}}">
+
           </ion-avatar>
-          {{movie.original_title}}
-          <button ion-button icon-left  (click)="viewDetails($event, movie)" clear item-right>
+          {{item.name}}
+          <p *ngIf="actor.also_known_as_string">{{actor.also_known_as_string}}</p>
+
+          <button ion-button icon-left  (click)="viewDetails($event, item)" clear item-right>
             <ion-icon name="eye"></ion-icon>
-            Details
+            More Details
           </button>
         </ion-item>
       </ion-card-header>
 
-      <ion-card-content class="outer-content">
-          <h3>About {{movie.original_title}}</h3>
-          <p class="item-description">{{movie.overview}}</p>
+      <ion-card-content class="outer-content" *ngIf="item.overview">
+          <h3>About {{item.name}}</h3>
+          <p class="item-description">{{item.overview | strlength}}</p>
       </ion-card-content>
 
       <ion-item>
-        <button ion-button icon-left (click)="openAppShare(movie)" clear item-right>
+        <button ion-button icon-left (click)="openAppShare(item)" clear item-right>
           <ion-icon name="share"></ion-icon>
           Share
         </button>

@@ -1,6 +1,6 @@
 import { Component }     from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { MoviesService } from '../../services/movies.service';
+import { MoviesService } from '../../providers/movies.service';
 import { MovieDetailsPage }  from '../movie-details/movie-details';
 import { Movie }  from '../../app/core-components/entities/movie';
  
@@ -13,7 +13,6 @@ export class MoviesPage {
 
     movies: Movie[];
     searchTitle: string = "Movies";
-    classList: string = "movies";
  
     constructor(private navController: NavController, private moviesService: MoviesService) {
     }
@@ -34,7 +33,7 @@ export class MoviesPage {
    
     goToMovieDetails(movie) {
         this.navController.push(MovieDetailsPage, {
-            movie: movie.movie
+            movie: movie.item
         });
     }
 

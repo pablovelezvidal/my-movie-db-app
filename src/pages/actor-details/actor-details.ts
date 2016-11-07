@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 /*
   Generated class for the ActorDetails page.
@@ -13,10 +13,12 @@ import { NavController } from 'ionic-angular';
 })
 export class ActorDetailsPage {
 
-  constructor(public navCtrl: NavController) {}
+  private actor = {};
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
-    console.log('Hello ActorDetailsPage Page');
+    this.actor = this.navParams.get('actor');
   }
 
 }

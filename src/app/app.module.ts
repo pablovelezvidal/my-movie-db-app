@@ -1,11 +1,20 @@
+/*basic imports*/ 
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
+
+/* movies imports */
 import { MoviesPage } from '../pages/movies/movies';
-import { ActorsPage } from '../pages/actors/actors';
 import { MovieDetailsPage } from '../pages/movie-details/movie-details';
+
+/* actors imports */
+import { ActorsPage } from '../pages/actors/actors';
+import { ActorDetailsPage } from '../pages/actor-details/actor-details';
+
+/* common components import */
 import { SearchBarComponent, CardListComponent } from './core-components/common-components/common-components';
-//import { CardListComponent }  from './core-components/card-list/card-list';
+import { OnCreate } from './core-components/directives/on-create-event.directive';
+import { StrLengthPipe } from './core-components/custom-pipes/str-length.pipe';
 
 @NgModule({
   declarations: [
@@ -13,8 +22,11 @@ import { SearchBarComponent, CardListComponent } from './core-components/common-
     MoviesPage,
     MovieDetailsPage,
     ActorsPage,
+    ActorDetailsPage,
     SearchBarComponent,
-    CardListComponent
+    CardListComponent,
+    OnCreate,
+    StrLengthPipe
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -25,6 +37,7 @@ import { SearchBarComponent, CardListComponent } from './core-components/common-
     MoviesPage,
     MovieDetailsPage,
     ActorsPage,
+    ActorDetailsPage,
     SearchBarComponent,
     CardListComponent
   ],
