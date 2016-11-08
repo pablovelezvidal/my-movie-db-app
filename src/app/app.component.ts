@@ -22,7 +22,7 @@ export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
 
-  rootPage = MoviesPage;
+  rootPage = ActorsPage;
 
   // List of pages that can be navigated to from the left menu
   appPages: PageObj[] = [

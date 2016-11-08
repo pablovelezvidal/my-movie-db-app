@@ -11,6 +11,6 @@
 <ion-content class="outer-content home" padding>
   <search-bar [title]='searchTitle' (input)="searchItemsDB($event, searchKey)"></search-bar>
   
-  <card-list [items]="actors" (clickGoToDetails)="goToMovieDetails($event, movie)"></card-list>
+  <card-list [items]="actors" (clickGoToDetails)="goToActorDetails($event, actor)"></card-list>
   
 </ion-content>

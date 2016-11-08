@@ -30,11 +30,6 @@ export class CardListComponent {
     this.clickGoToDetails.emit({event:event, item:item});
   }
 
-  processItemValues(item) {
-    item.img = "jueputa";
-    return item;
-  }
-
   setCorrectValuesToItem(item){
     //for the list, the api depending on what was called returns one value or other
     //we put standard values for list depending on the passed input

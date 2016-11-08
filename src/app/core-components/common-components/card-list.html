@@ -8,7 +8,7 @@
 
           </ion-avatar>
           {{item.name}}
-          <p *ngIf="actor.also_known_as_string">{{actor.also_known_as_string}}</p>
+          <p *ngIf="item.also_known_as_string">{{item.also_known_as_string}}</p>
 
           <button ion-button icon-left  (click)="viewDetails($event, item)" clear item-right>
             <ion-icon name="eye"></ion-icon>

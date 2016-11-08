@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ActorsService } from '../../providers/actors.service';
 
 /*
   Generated class for the ActorDetails page.
@@ -9,16 +10,33 @@ import { NavController, NavParams } from 'ionic-angular';
 */
 @Component({
   selector: 'page-actor-details',
-  templateUrl: 'actor-details.html'
+  templateUrl: 'actor-details.html',
+    providers: [ActorsService]
 })
-export class ActorDetailsPage {
+export class ActorDetailsPage implements OnInit{
 
   private actor = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private actorsService: ActorsService) {}
 
-  ionViewDidLoad() {
-    this.actor = this.navParams.get('actor');
+
+  getMoreActorDetails(id) {
+      if(id) {
+          this.actorsService.getActor(id).subscribe(
+              data => {
+                  this.actor = data;
+              },
+              err => {
+                  console.log(err);
+              },
+              () => console.log("item loaded...")
+          );
+      }
+  } 
+
+  ngOnInit() {
+    let actor = this.navParams.get('actor');
+    this.getMoreActorDetails(actor.id);
   }
 
 }

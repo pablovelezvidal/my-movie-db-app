@@ -12,6 +12,7 @@ import { Actor }  from '../../app/core-components/entities/actor';
 export class ActorsPage {
 
     actors: Actor[];
+    actor: Actor;
     searchTitle: string = "Actors";
  
     constructor(private navController: NavController, private actorsService: ActorsService) {
@@ -19,7 +20,7 @@ export class ActorsPage {
    
     searchItemsDB(event, key) {
         if(event.target.value.length > 2) {
-            this.actorsService.searchMovies(event.target.value).subscribe(
+            this.actorsService.searchActors(event.target.value).subscribe(
                 data => {
                     this.actors = data.results;
                 },
@@ -31,7 +32,7 @@ export class ActorsPage {
         }
     } 
    
-    goToMovieDetails(actor) {
+    goToActorDetails(actor) {
         this.navController.push(ActorDetailsPage, {
             actor: actor.item
         });
