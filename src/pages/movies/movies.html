@@ -9,8 +9,9 @@
  
 
 <ion-content class="outer-content home" padding>
+
   <search-bar [title]='searchTitle' (input)="searchItemsDB($event, searchKey)"></search-bar>
   
   <card-list [items]="movies" (clickGoToDetails)="goToMovieDetails($event, movie)"></card-list>
-  
+
 </ion-content>

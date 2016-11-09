@@ -4,6 +4,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { MoviesPage } from '../pages/movies/movies';
 import { ActorsPage } from '../pages/actors/actors';
+import { HomePage } from '../pages/home/home';
 
 //Every page object MUST have this structure otherwise the app will break ;)
 export interface PageObj {
@@ -22,10 +23,11 @@ export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
 
-  rootPage = ActorsPage;
+  rootPage = HomePage;
 
   // List of pages that can be navigated to from the left menu
   appPages: PageObj[] = [
+    { title: 'Home', component: HomePage, icon: 'home' },
     { title: 'Movies', component: MoviesPage, icon: 'film' },
     { title: 'Actors', component: ActorsPage, icon: 'person'}
   ];

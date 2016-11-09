@@ -11,6 +11,9 @@ import { MovieDetailsPage } from '../pages/movie-details/movie-details';
 import { ActorsPage } from '../pages/actors/actors';
 import { ActorDetailsPage } from '../pages/actor-details/actor-details';
 
+/* home imports */
+import { HomePage } from '../pages/home/home';
+
 /* common components import */
 import { SearchBarComponent, CardListComponent } from './core-components/common-components/common-components';
 import { OnCreate } from './core-components/directives/on-create-event.directive';
@@ -19,6 +22,7 @@ import { StrLengthPipe } from './core-components/custom-pipes/str-length.pipe';
 @NgModule({
   declarations: [
     MyApp,
+    HomePage,
     MoviesPage,
     MovieDetailsPage,
     ActorsPage,
@@ -35,6 +39,7 @@ import { StrLengthPipe } from './core-components/custom-pipes/str-length.pipe';
   entryComponents: [
     MyApp,
     MoviesPage,
+    HomePage,
     MovieDetailsPage,
     ActorsPage,
     ActorDetailsPage,
