@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { LoadingController } from 'ionic-angular';
 //the search box for the lists
 @Component({
   selector: 'search-bar',
@@ -26,7 +26,6 @@ export class CardListComponent {
   constructor() {}
 
   viewDetails(event, item) {
-    //this.clickGoToDetails = event;
     this.clickGoToDetails.emit({event:event, item:item});
   }
 
@@ -38,6 +37,4 @@ export class CardListComponent {
     item.also_known_as_string = item.also_known_as ? item.also_known_as.join(', ') : '';
 
   }
-
-
 }

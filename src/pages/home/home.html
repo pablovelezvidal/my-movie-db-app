@@ -6,19 +6,30 @@
     <ion-title>My Movie DB APP</ion-title>
   </ion-navbar>
 </ion-header>
+
  
 
 <ion-content class="outer-content home" class="no-padding">
-<h2>Most Popular Movies</h2>
-<ion-grid>
-  <ion-row *ngFor="let item of movies" class="no-padding">
-    <ion-col *ngFor="let movie of item" class="no-padding">
-      <ion-card class="my-card no-padding">
-        <img src="https://image.tmdb.org/t/p/w92{{movie.poster_path}}">
-      </ion-card>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+  <ion-segment class="seg-button-group">
+    <ion-segment-button value="now_paying" class="segment-activated" (click)="getNowPlayingMovies()">
+        Now Playing
+    </ion-segment-button>
+    <ion-segment-button value="upcoming" (click)="getUpcomingMovies()">
+        Upcoming
+    </ion-segment-button>
+    <ion-segment-button value="popular" (click)="getPopularMovies()">
+        Popular
+    </ion-segment-button>
+  </ion-segment>
+  <ion-grid>
+    <ion-row *ngFor="let item of movies" class="no-padding">
+      <ion-col *ngFor="let movie of item" class="no-padding">
+        <ion-card class="my-card no-padding">
+          <img src="https://image.tmdb.org/t/p/w92{{movie.poster_path}}">
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 
 </ion-content>

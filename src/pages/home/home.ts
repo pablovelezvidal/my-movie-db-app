@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MoviesService } from '../../providers/movies.service';
+import { LoadingClass } from  '../../providers/loading';
 import * as _ from "lodash";
 
 
@@ -13,15 +14,16 @@ import * as _ from "lodash";
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [MoviesService]
+  providers: [MoviesService, LoadingClass]
 })
 export class HomePage implements OnInit{
 
   private movies: Array<any>;
 
-  constructor(public navCtrl: NavController, private moviesServices: MoviesService) {}
+  constructor(public navCtrl: NavController, private moviesServices: MoviesService, private loading: LoadingClass) {}
 
-  getMoreActorDetails() {
+  getPopularMovies() {
+      this.loading.startLoading();
       this.moviesServices.getPopularMovies().subscribe(
           data => {
               this.organizeMovies(data.results);
@@ -34,8 +36,37 @@ export class HomePage implements OnInit{
 
   } 
 
+  getUpcomingMovies() {
+      this.loading.startLoading();
+      this.moviesServices.getUpcomingMovies().subscribe(
+          data => {
+              this.organizeMovies(data.results);
+          },
+          err => {
+              console.log(err);
+          },
+          () => console.log("item loaded...")
+      );
+
+  }
+
+  getNowPlayingMovies() {
+      this.loading.startLoading();
+      this.moviesServices.getNowPlayingMovies().subscribe(
+          data => {
+              this.organizeMovies(data.results);
+          },
+          err => {
+              console.log(err);
+          },
+          () => console.log("item loaded...")
+      );
+
+  }
+
   organizeMovies(movies) {
     this.movies = this.partition(movies, 4);
+    this.loading.stopLoading();
   }
 
   partition(data, n) {
@@ -43,7 +74,7 @@ export class HomePage implements OnInit{
   }
 
   ngOnInit() {
-    this.getMoreActorDetails();
+    this.getNowPlayingMovies();
   }
 
 }
