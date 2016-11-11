@@ -1,20 +1,27 @@
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { APP_CONFIG, IAppConfig } from '../app/app.config';
+import {Inject, Injectable} from "@angular/core";
   
+@Injectable()
 export class MoviesService {  
 
-    private apiUrl: string = "http://api.themoviedb.org/3";
-    private apiKey: string = "f023990d17c293f4b163142cdbad6597";
-    private moviesEndpoint = "/search/movie";
-    private popularMoviesEndpoint = "/movie/popular";
-    private upcomingMoviesEndpoint = "/movie/upcoming";
-    private nowplayingMoviesEndpoint = "/movie/now_playing";
-
-    static get parameters() {
-        return [[Http]];
-    }
+    private apiUrl: string; 
+    private apiKey: string; 
+    private moviesEndpoint: string; 
+    private popularMoviesEndpoint: string; 
+    private upcomingMoviesEndpoint: string; 
+    private nowplayingMoviesEndpoint: string;
+    private http:Http;
   
-    constructor(private http:Http) {
+    constructor(private httpObj:Http, @Inject(APP_CONFIG) private config:IAppConfig) {
+        this.apiKey = config.apiKey;
+        this.apiUrl = config.apiUrl;
+        this.moviesEndpoint = config.moviesEndpoint;
+        this.popularMoviesEndpoint = config.popularMoviesEndpoint;
+        this.upcomingMoviesEndpoint = config.upcomingMoviesEndpoint;
+        this.nowplayingMoviesEndpoint = config.nowplayingMoviesEndpoint;
+        this.http = httpObj;
     }
   
     searchMovies(movieName) {

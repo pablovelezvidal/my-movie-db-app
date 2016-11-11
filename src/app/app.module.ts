@@ -19,6 +19,9 @@ import { SearchBarComponent, CardListComponent } from './core-components/common-
 import { OnCreate } from './core-components/directives/on-create-event.directive';
 import { StrLengthPipe } from './core-components/custom-pipes/str-length.pipe';
 
+/* config values */
+import { APP_CONFIG, AppConfig } from './app.config';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -46,6 +49,6 @@ import { StrLengthPipe } from './core-components/custom-pipes/str-length.pipe';
     SearchBarComponent,
     CardListComponent
   ],
-  providers: []
+  providers: [{ provide: APP_CONFIG, useValue: AppConfig }]
 })
 export class AppModule {}
