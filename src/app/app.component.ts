@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { MenuController, Nav, Platform} from 'ionic-angular';
+import { Nav, Platform} from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { MoviesPage } from '../pages/movies/movies';

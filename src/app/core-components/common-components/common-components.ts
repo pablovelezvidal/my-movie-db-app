@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { LoadingController } from 'ionic-angular';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import {Keyboard} from 'ionic-native';
 //the search box for the lists
 @Component({
   selector: 'search-bar',
@@ -8,7 +8,20 @@ import { LoadingController } from 'ionic-angular';
 export class SearchBarComponent {
   @Input() title: string = "";
   @Output() bindModelDataChange: any = new EventEmitter();  
+
+  @ViewChild('input') myInput ;
+
   constructor() {}
+
+  setFocus() {
+
+      setTimeout(() => {
+        this.myInput.setFocus();
+        Keyboard.show();
+      },500);
+
+  }
+  
 }
 
 /**************************************/
