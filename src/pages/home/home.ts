@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MoviesService } from '../../providers/movies.service';
 import { LoadingClass } from  '../../providers/loading';
+import { MovieDetailsPage }  from '../movie-details/movie-details';
 import * as _ from "lodash";
 
 
@@ -20,7 +21,7 @@ export class HomePage implements OnInit{
 
   private movies: Array<any>;
 
-  constructor(public navCtrl: NavController, private moviesServices: MoviesService, private loading: LoadingClass) {}
+  constructor(private navCtrl: NavController, private moviesServices: MoviesService, private loading: LoadingClass) {}
 
   getPopularMovies() {
       this.loading.startLoading();
@@ -71,6 +72,12 @@ export class HomePage implements OnInit{
 
   partition(data, n) {
     return _.chunk(data, 4);
+  }
+
+  goToDetails(movie) {
+        this.navCtrl.push(MovieDetailsPage, {
+            movie: movie
+        });
   }
 
   ngOnInit() {
