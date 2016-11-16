@@ -1,16 +1,33 @@
 page-home {
-
 }
 
 .no-padding {
     padding: 0px !important;
 }
 
+.seg-button-group {
+    padding: 1%;
+}
+
 .my-card {
     margin: 3px;
     width: calc(100% - 5px);
+    position: relative;
 }
 
-.seg-button-group {
-    padding: 1%;
+.my-card .card-title {
+    color: #fafafa;
+    font-size: 2em;
+    font-weight: 700;
+    position: absolute;
+    text-align: center;
+    text-shadow: 1px 2px 8px #000;
+    top: 5%;
+    width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+    .my-card .card-title {
+        font-size: 1em !important;
+    }
 }
