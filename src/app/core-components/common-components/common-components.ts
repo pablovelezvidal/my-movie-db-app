@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-import {Keyboard} from 'ionic-native';
+import { Keyboard } from 'ionic-native';
+import { Platform, NavParams, ViewController } from 'ionic-angular';
 //the search box for the lists
 @Component({
   selector: 'search-bar',
@@ -52,5 +53,30 @@ export class CardListComponent {
     item.also_known_as_string = item.also_known_as ? item.also_known_as.join(', ') : '';
 
 
+  }
+}
+
+/** Modal Content Page **/
+@Component({
+  templateUrl: 'modal-content-page.html'
+})
+export class ModalContentPage {
+  character;
+
+  @Input() item: any;
+  @Input() showMovieDetails: boolean = false;
+  @Input() showActorDetails: boolean = false;
+
+  constructor(
+    public platform: Platform,
+    public params: NavParams,
+    public viewCtrl: ViewController
+  ) { 
+    this.item = this.params.get('item');
+    this.showMovieDetails = this.params.get('showMovieDetails');
+  }
+    
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
 }

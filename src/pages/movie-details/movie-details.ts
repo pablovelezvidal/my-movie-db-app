@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { LoadingClass } from  '../../providers/loading';
 
@@ -15,9 +15,10 @@ import { LoadingClass } from  '../../providers/loading';
 })
 export class MovieDetailsPage {
 
-  private movie = {};
+  @Input() movie = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private loading: LoadingClass) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private loading: LoadingClass) {
+  }
 
   ionViewDidLoad() {
     this.loading.startLoading();

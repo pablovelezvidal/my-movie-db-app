@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ActorsService } from '../../providers/actors.service';
 import { LoadingClass } from  '../../providers/loading';
@@ -18,7 +18,8 @@ export class ActorDetailsPage implements OnInit{
 
   private actor = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private actorsService: ActorsService, private loading: LoadingClass) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private actorsService: ActorsService, private loading: LoadingClass) {
+  }
 
 
   getMoreActorDetails(id) {
