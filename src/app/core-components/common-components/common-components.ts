@@ -67,6 +67,9 @@ export class ModalContentPage {
   @Input() showMovieDetails: boolean = false;
   @Input() showActorDetails: boolean = false;
 
+  //This tells the child components to be shown for a modal window
+  public showInModal: boolean = true;
+
   constructor(
     public platform: Platform,
     public params: NavParams,
@@ -76,6 +79,7 @@ export class ModalContentPage {
     this.showMovieDetails = this.params.get('showMovieDetails');
   }
     
+
   dismiss() {
     this.viewCtrl.dismiss();
   }

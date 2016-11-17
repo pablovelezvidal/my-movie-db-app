@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ModalController, NavParams } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { MoviesService } from '../../providers/movies.service';
 import { LoadingClass } from  '../../providers/loading';
-import { MovieDetailsPage }  from '../movie-details/movie-details';
+import { MovieDetailsPage } from '../movie-details/movie-details';
 import { ModalContentPage }  from '../../app/core-components/common-components/common-components';
 import * as _ from "lodash";
 

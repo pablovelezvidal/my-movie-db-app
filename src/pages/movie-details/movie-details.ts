@@ -16,8 +16,10 @@ import { LoadingClass } from  '../../providers/loading';
 export class MovieDetailsPage {
 
   @Input() movie = {};
+  @Input() showInModal:boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private loading: LoadingClass) {
+    this.showInModal = this.navParams.get('showInModal');
   }
 
   ionViewDidLoad() {

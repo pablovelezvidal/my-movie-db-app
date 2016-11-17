@@ -17,8 +17,10 @@ import { LoadingClass } from  '../../providers/loading';
 export class ActorDetailsPage implements OnInit{
 
   private actor = {};
+  @Input() showInModal:boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private actorsService: ActorsService, private loading: LoadingClass) {
+      this.showInModal = this.navParams.get('showInModal');
   }
 
 
