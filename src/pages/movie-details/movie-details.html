@@ -2,8 +2,10 @@
     <ion-navbar>
         <ion-title>
             Movie Info
-             <button ion-button round *ngIf="showInModal">Close</button>
         </ion-title>
+        <button ion-button round *ngIf="showInModal" class="close-modal-button" (click)="closeModalWindow()">
+            <ion-icon name="md-close"></ion-icon>
+        </button>
     </ion-navbar>
 </ion-header>
  

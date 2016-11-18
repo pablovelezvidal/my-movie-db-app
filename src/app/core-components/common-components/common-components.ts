@@ -14,8 +14,8 @@ export class SearchBarComponent {
 
   constructor() {}
 
+  //put the focus on the searchbar
   setFocus() {
-
       setTimeout(() => {
         this.myInput.setFocus();
         Keyboard.show();
@@ -34,11 +34,12 @@ export class SearchBarComponent {
 })
 export class CardListComponent {
   @Input() items: Array<any> = [];
-  //@Input() clickGoToDetails: any;
   @Output() clickGoToDetails: any = new EventEmitter(); 
 
   constructor() {}
 
+  //emit the event when the user clicks on a item in the list. The parent element needs to capture and have
+  //method to handle clickGoToDetails
   viewDetails(event, item) {
     this.clickGoToDetails.emit({event:event, item:item});
   }
@@ -77,10 +78,11 @@ export class ModalContentPage {
   ) { 
     this.item = this.params.get('item');
     this.showMovieDetails = this.params.get('showMovieDetails');
+    this.showActorDetails = this.params.get('showActorDetails');
   }
-    
 
   dismiss() {
     this.viewCtrl.dismiss();
+    console.log("calls the fucking dismiss method")
   }
 }

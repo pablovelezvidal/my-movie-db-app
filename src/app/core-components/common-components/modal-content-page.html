@@ -1,2 +1,2 @@
-<page-movie-details *ngIf="showMovieDetails" [movie]="item" [showInModal]="showInModal"></page-movie-details>
+<page-movie-details *ngIf="showMovieDetails" [movie]="item" [showInModal]="showInModal" (dismissEvent)="dismiss()"></page-movie-details>
 <page-actor-details *ngIf="showActorDetails" [id]="item" [showInModal]="showInModal"></page-actor-details>

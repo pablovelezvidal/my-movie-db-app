@@ -12,6 +12,13 @@
 
   <search-bar [title]='searchTitle' (input)="searchItemsDB($event, searchKey)"></search-bar>
   
+  <!-- here, the invoqued event "clickGoToDetails, that calls a method existing in the 'movies.ts'file called:
+  goToMovieDetails"... it's called like if it were an existing event, but this is just an event emmited by the child 
+  component invoqued, in this case, the card-list. The CardListComponent class has an output attribute: 
+  "@Output() clickGoToDetails: any = new EventEmitter();", (clickGoToDetails is the event launched, that's why here 
+  we called an event with that name'). On the click event on an item in the CardListComponent html, there is a method 
+  called viewDetails that when called, uses the EventEmitterObject, in this case clickGoToDetails, and emit the event so the
+  parent Component, in this case movies component, can trigger it. Fucking weird, isn't it' -->
   <card-list [items]="movies" (clickGoToDetails)="goToMovieDetails($event, movie)"></card-list>
 
 </ion-content>
