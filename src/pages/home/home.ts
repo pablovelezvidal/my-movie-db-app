@@ -21,9 +21,20 @@ export class HomePage implements OnInit{
 
   private movies: Array<any>;
 
+  private tabs = {
+    now_playing : "getNowPlayingMovies",
+    popular : "getPopularMovies",
+    upcoming : "getUpcomingMovies"
+  };
+
+  //This value is loaded on the onInit event
+  public selectedTab = "";
+
   constructor(public modalCtrl: ModalController, private navCtrl: NavController, private moviesServices: MoviesService, private loading: LoadingClass) {}
 
   getPopularMovies() {
+    if (this.selectedTab != this.tabs.popular) {
+      this.selectedTab = this.tabs.popular;
       this.loading.startLoading();
       this.moviesServices.getPopularMovies().subscribe(
           data => {
@@ -34,10 +45,12 @@ export class HomePage implements OnInit{
           },
           () => console.log("item loaded...")
       );
-
+    }
   } 
 
   getUpcomingMovies() {
+    if (this.selectedTab != this.tabs.upcoming) {
+      this.selectedTab = this.tabs.upcoming;
       this.loading.startLoading();
       this.moviesServices.getUpcomingMovies().subscribe(
           data => {
@@ -48,10 +61,12 @@ export class HomePage implements OnInit{
           },
           () => console.log("item loaded...")
       );
-
+    }
   }
 
   getNowPlayingMovies() {
+    if (this.selectedTab != this.tabs.now_playing) {
+      this.selectedTab = this.tabs.now_playing;
       this.loading.startLoading();
       this.moviesServices.getNowPlayingMovies().subscribe(
           data => {
@@ -62,6 +77,29 @@ export class HomePage implements OnInit{
           },
           () => console.log("item loaded...")
       );
+    }
+  }
+
+  doInfinite(infiniteScroll) {
+    // this.loading.startLoading();
+    let newMovies;
+
+    newMovies = this.moviesServices[this.selectedTab]();
+
+    newMovies.subscribe(
+        data => {
+          let chunked = this.partition(data.results, 4);
+          for (let i=0; i< chunked.length; i++){
+            this.movies.push(chunked[i]);
+          }
+            // this.loading.stopLoading();
+          infiniteScroll.complete();
+        },
+        err => {
+            console.log(err);
+        },
+        () => console.log("item loaded...")
+    );
 
   }
 
