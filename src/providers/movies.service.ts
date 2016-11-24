@@ -13,6 +13,12 @@ export class MoviesService {
     private upcomingMoviesEndpoint: string; 
     private nowplayingMoviesEndpoint: string;
     private http:Http;
+    //Counters used for paginating the results 
+    private pagesPagination = {
+        popular : {page: 0, name: "popular"},
+        upcoming : {page: 0, name: "upcoming"},
+        nowPlaying : {page: 0, name: "now_playing"}
+    }
   
     constructor(private httpObj:Http, @Inject(APP_CONFIG) private config:IAppConfig) {
         this.apiKey = config.apiKey;
@@ -31,24 +37,46 @@ export class MoviesService {
     }
 
     getPopularMovies() {
-        var response = this.getUrl(this.popularMoviesEndpoint);
+        //reset the other pages so when clicked they start at page 1
+        this.resetPageValues(this.pagesPagination.popular.name);
+        //make the request
+        var pageQuery = 'page=' + ++this.pagesPagination.popular.page;
+        var response = this.getUrl(this.popularMoviesEndpoint, "", pageQuery);
         return response;
     }
 
     getUpcomingMovies() {
-        var response = this.getUrl(this.upcomingMoviesEndpoint);
+        //reset the other pages so when clicked they start at page 1
+        this.resetPageValues(this.pagesPagination.upcoming.name);
+        //make the request
+        var pageQuery = 'page=' + ++this.pagesPagination.upcoming.page;
+        var response = this.getUrl(this.upcomingMoviesEndpoint, "", pageQuery);
         return response;
     }
 
     getNowPlayingMovies() {
-        var response = this.getUrl(this.nowplayingMoviesEndpoint);
+        //reset the other pages so when clicked they start at page 1
+        this.resetPageValues(this.pagesPagination.nowPlaying.name);
+        //make the request
+        var pageQuery = 'page=' + ++this.pagesPagination.nowPlaying.page;
+        var response = this.getUrl(this.nowplayingMoviesEndpoint, "", pageQuery);
         return response;
     }
 
-    getUrl(endPoint:string, query?:string) {
-        var url = this.apiUrl+endPoint+(query ? "?query="+query+"&" : "?")+'api_key='+this.apiKey;
+    getUrl(endPoint:string, query?:string, page?:string) {
+        var url = this.apiUrl+endPoint+'?api_key='+this.apiKey+
+                    (query ? "&query="+query : "")+
+                        (page ? "&"+page : "");
+                        
         var response = this.http.get(url).map(res => res.json());
         return response;
+    }
+
+    private resetPageValues(current){
+        let pages = this.pagesPagination;
+        Object.keys(pages).map(function(key, index) {
+            pages[key].page = (pages[key].name != current) ? 0 : pages[key].page;
+        });
     }
 
 }

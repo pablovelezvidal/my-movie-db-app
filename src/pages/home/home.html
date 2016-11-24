@@ -5,11 +5,6 @@
     </button>
     <ion-title>My Movie DB APP</ion-title>
   </ion-navbar>
-</ion-header>
-
- 
-
-<ion-content class="no-padding">
   <ion-segment class="seg-button-group">
     <ion-segment-button value="now_paying" class="segment-activated" (click)="getNowPlayingMovies()">
         Now Playing
@@ -21,12 +16,16 @@
         Popular
     </ion-segment-button>
   </ion-segment>
+</ion-header>
+
+<ion-content class="no-padding">
   
   <ion-grid class="">
     <ion-row *ngFor="let item of movies" class="no-padding card-background-page">
       <ion-col *ngFor="let movie of item" class="no-padding">
         <ion-card class="my-card no-padding" (click)="goToDetails(movie)">
-          <img src="https://image.tmdb.org/t/p/w92{{movie.poster_path}}">
+          <img *ngIf="movie.poster_path" src="https://image.tmdb.org/t/p/w92{{movie.poster_path}}">
+          <img *ngIf="movie.poster_path == null" src="http://www.freeiconspng.com/uploads/no-image-icon-6.png">
           <div class="card-title">{{movie.original_title}}</div>
         </ion-card>
       </ion-col>
@@ -35,6 +34,5 @@
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </ion-grid>
-
 
 </ion-content>
