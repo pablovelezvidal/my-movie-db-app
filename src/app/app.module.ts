@@ -15,7 +15,7 @@ import { ActorDetailsPage } from '../pages/actor-details/actor-details';
 import { HomePage } from '../pages/home/home';
 
 /* common components import */
-import { SearchBarComponent, CardListComponent, ModalContentPage } from './core-components/common-components/common-components';
+import { CardListComponent, ModalContentPage } from './core-components/common-components/common-components';
 import { OnCreate } from './core-components/directives/on-create-event.directive';
 import { StrLengthPipe } from './core-components/custom-pipes/str-length.pipe';
 
@@ -30,7 +30,6 @@ import { APP_CONFIG, AppConfig } from './app.config';
     MovieDetailsPage,
     ActorsPage,
     ActorDetailsPage,
-    SearchBarComponent,
     CardListComponent,
     ModalContentPage,
     OnCreate,
@@ -47,7 +46,6 @@ import { APP_CONFIG, AppConfig } from './app.config';
     MovieDetailsPage,
     ActorsPage,
     ActorDetailsPage,
-    SearchBarComponent,
     CardListComponent,
     ModalContentPage
   ],

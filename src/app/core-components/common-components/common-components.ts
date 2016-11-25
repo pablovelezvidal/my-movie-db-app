@@ -1,29 +1,5 @@
-import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-import { Keyboard } from 'ionic-native';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Platform, NavParams, ViewController } from 'ionic-angular';
-//the search box for the lists
-@Component({
-  selector: 'search-bar',
-  templateUrl: 'search-bar.html'
-})
-export class SearchBarComponent {
-  @Input() title: string = "";
-  @Output() bindModelDataChange: any = new EventEmitter();  
-
-  @ViewChild('input') myInput ;
-
-  constructor() {}
-
-  //put the focus on the searchbar
-  setFocus() {
-      setTimeout(() => {
-        this.myInput.setFocus();
-        Keyboard.show();
-      },500);
-
-  }
-  
-}
 
 /**************************************/
 

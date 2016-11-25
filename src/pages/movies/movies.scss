@@ -1,3 +1,18 @@
-page-home {
+.search-button {
+    right: 1%;
+    top: 27%;
+    position: absolute;
+}
 
+.search-bar-content {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.search-bar-content > .label-md {
+    margin: -5px 8px 0 0;
+}
+
+.search-bar {
+    width: 95%;
 }
