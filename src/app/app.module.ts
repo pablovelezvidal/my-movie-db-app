@@ -10,6 +10,7 @@ import { MovieDetailsPage } from '../pages/movie-details/movie-details';
 /* actors imports */
 import { ActorsPage } from '../pages/actors/actors';
 import { ActorDetailsPage } from '../pages/actor-details/actor-details';
+import { FindActorByMoviesPage } from '../pages/find-actor-by-movies/find-actor-by-movies';
 
 /* home imports */
 import { HomePage } from '../pages/home/home';
@@ -33,7 +34,8 @@ import { APP_CONFIG, AppConfig } from './app.config';
     CardListComponent,
     ModalContentPage,
     OnCreate,
-    StrLengthPipe
+    StrLengthPipe,
+    FindActorByMoviesPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -47,7 +49,8 @@ import { APP_CONFIG, AppConfig } from './app.config';
     ActorsPage,
     ActorDetailsPage,
     CardListComponent,
-    ModalContentPage
+    ModalContentPage,
+    FindActorByMoviesPage
   ],
   providers: [{ provide: APP_CONFIG, useValue: AppConfig }]
 })

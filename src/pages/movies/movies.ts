@@ -6,6 +6,8 @@ import { Movie }  from '../../app/core-components/entities/movie';
 import { LoadingClass } from  '../../providers/loading';
 import { Keyboard } from 'ionic-native';
  
+ /* providers keyword is required so Angular can know how to create and inject an object of type MovieService. 
+ This is how AngularJS 2 handles dependency injection. */
 @Component({
     templateUrl: './movies.html',
     providers: [MoviesService, LoadingClass]
