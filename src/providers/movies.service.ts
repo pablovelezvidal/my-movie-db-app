@@ -8,6 +8,7 @@ export class MoviesService {
 
     private apiUrl: string; 
     private apiKey: string; 
+    private movieEndpoint: string; 
     private moviesEndpoint: string; 
     private popularMoviesEndpoint: string; 
     private upcomingMoviesEndpoint: string; 
@@ -23,6 +24,7 @@ export class MoviesService {
     constructor(private httpObj:Http, @Inject(APP_CONFIG) private config:IAppConfig) {
         this.apiKey = config.apiKey;
         this.apiUrl = config.apiUrl;
+        this.movieEndpoint = config.movieEndpoint;
         this.moviesEndpoint = config.moviesEndpoint;
         this.popularMoviesEndpoint = config.popularMoviesEndpoint;
         this.upcomingMoviesEndpoint = config.upcomingMoviesEndpoint;
@@ -60,6 +62,12 @@ export class MoviesService {
         //make the request
         var pageQuery = 'page=' + ++this.pagesPagination.nowPlaying.page;
         var response = this.getUrl(this.nowplayingMoviesEndpoint, "", pageQuery);
+        return response;
+    }
+
+    getMovieCredits(id) {
+        var url = this.apiUrl+this.movieEndpoint + '/' + encodeURI(id) + '/credits?api_key='+this.apiKey;
+        var response = this.http.get(url).map(res => res.json());;
         return response;
     }
 
