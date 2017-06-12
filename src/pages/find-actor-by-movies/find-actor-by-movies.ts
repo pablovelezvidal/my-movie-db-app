@@ -7,18 +7,18 @@ import { Movie }  from '../../app/core-components/entities/movie';
 import { LoadingClass } from  '../../providers/loading';
 
 /*
-  Generated class for the FindActorByMovies page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
+  Class documentation
 */
 @Component({
   selector: 'page-find-actor-by-movies',
   templateUrl: 'find-actor-by-movies.html',
   providers: [MoviesService, LoadingClass]
 })
+
 export class FindActorByMoviesPage {
   movies: Movie[];
+  actorsCastIds: Array<any> = [];
+  actorsFound: Array<any> = [];
   selectedMovies: Array <Movie> = [];
   searchTitle: string = "Movies";
   searchBarTitle:string = "Start selecting Movies to find your actor";
@@ -66,6 +66,7 @@ export class FindActorByMoviesPage {
   } 
 
   public addToSelectedMovies(movie) {
+    //Put a validation to limit to 5 the amount of movies
     this.selectedMovies.push(movie);
     this.onCancel();
 
@@ -76,11 +77,30 @@ export class FindActorByMoviesPage {
   }
 
   public findFuckingActor() {
-    var moviesCast: Array<any> = [];
+    let counter = 0;
     for (let movie of this.selectedMovies) {
       this.moviesService.getMovieCredits(movie.id).subscribe(
             data => {
-              moviesCast.push(data);
+              let that = this;
+              console.log("casting individual", data.cast);
+
+              data.cast.map(function(cast) {
+
+                if (that.actorsCastIds.indexOf(cast.id) != -1) {
+                  console.log("casting individual", cast);
+                  that.actorsFound.push( {id: cast.id, name: cast.name});
+                  
+                } else {
+                  that.actorsCastIds.push(cast.id);
+                }
+
+              });
+
+              if (counter >= 1) {
+                //just call this function after comparing at least two movies
+                this.makeMatchActors();
+              }
+              counter++;
             },
             err => {
               console.log(err);
@@ -89,20 +109,14 @@ export class FindActorByMoviesPage {
       );
     }
 
-    this.makeMatchActors(moviesCast);
-
   }
 
-  public makeMatchActors(moviesCast) {
+  public makeMatchActors() {
+    let that = this;
+    setTimeout(function(){
+      //console.log(that.actorsFound);
+    }, 2000);
 
-   var xi =  moviesCast.map(function(movie) {
-     console.log("hola");
-      return movie.cast;
-    })
-    
-    console.log("casts", moviesCast, moviesCast.length, moviesCast[0], Object.prototype.toString.call(moviesCast));
   }
-
-
 
 }
