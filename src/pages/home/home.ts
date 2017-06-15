@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 import { MoviesService } from '../../providers/movies.service';
 import { LoadingClass } from  '../../providers/loading';
-import { ModalContentPage }  from '../../app/core-components/common-components/common-components';
+import { ModalContentPage }  from '../../app/core-components/common-components/modal-content-page';
 import * as _ from "lodash";
 
 
@@ -17,14 +17,15 @@ import * as _ from "lodash";
   templateUrl: 'home.html',
   providers: [MoviesService, LoadingClass, ModalContentPage]
 })
+
 export class HomePage implements OnInit{
 
   private movies: Array<any>;
 
   private tabs = {
     now_playing : "getNowPlayingMovies",
-    popular : "getPopularMovies",
-    upcoming : "getUpcomingMovies"
+    popular     : "getPopularMovies",
+    upcoming    : "getUpcomingMovies"
   };
 
   //This value is loaded on the onInit event
@@ -81,18 +82,18 @@ export class HomePage implements OnInit{
   }
 
   doInfinite(infiniteScroll) {
-    // this.loading.startLoading();
     let newMovies;
 
     newMovies = this.moviesServices[this.selectedTab]();
 
     newMovies.subscribe(
         data => {
+          //create an array of arrays->(4 elements each)
           let chunked = this.partition(data.results, 4);
           for (let i=0; i< chunked.length; i++){
             this.movies.push(chunked[i]);
           }
-            // this.loading.stopLoading();
+
           infiniteScroll.complete();
         },
         err => {
@@ -113,9 +114,6 @@ export class HomePage implements OnInit{
   }
 
   goToDetails(movie) {
-        // this.navCtrl.push(MovieDetailsPage, {
-        //     movie: movie
-        // });
     let modal = this.modalCtrl.create(ModalContentPage, {item: movie, showMovieDetails: true});
     modal.present();
 

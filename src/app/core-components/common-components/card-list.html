@@ -14,20 +14,20 @@
             <ion-icon name="eye"></ion-icon>
             More Details
           </button>
+
+          <button ion-button (click)="closeCard($event, item)" *ngIf="showCloseButton"
+              clear item-right class="close-card-button"
+          >
+            <ion-icon name="close"></ion-icon>
+          </button>
+
         </ion-item>
       </ion-card-header>
 
-      <ion-card-content class="outer-content" *ngIf="item.overview">
+      <ion-card-content class="outer-content" *ngIf="item.overview && showDetails">
           <h3>About {{item.name}}</h3>
           <p class="item-description">{{item.overview | strlength}}</p>
       </ion-card-content>
-
-      <ion-item>
-        <button ion-button icon-left (click)="openAppShare(item)" clear item-right>
-          <ion-icon name="share"></ion-icon>
-          Share
-        </button>
-      </ion-item>
 
     </ion-card>
   </ion-list>

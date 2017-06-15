@@ -1,7 +1,13 @@
 /*basic imports*/ 
+import { BrowserModule } from '@angular/platform-browser';//ionic 3 migration
+import { HttpModule } from '@angular/http';//ionic 3 migration
+import { StatusBar } from '@ionic-native/status-bar';//ionic 3 migration
+import { SplashScreen } from '@ionic-native/splash-screen';//ionic 3 migration
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
+
 
 /* movies imports */
 import { MoviesPage } from '../pages/movies/movies';
@@ -16,7 +22,8 @@ import { FindActorByMoviesPage } from '../pages/find-actor-by-movies/find-actor-
 import { HomePage } from '../pages/home/home';
 
 /* common components import */
-import { CardListComponent, ModalContentPage } from './core-components/common-components/common-components';
+import { ModalContentPage } from './core-components/common-components/modal-content-page';
+import { CardListComponent } from './core-components/common-components/card-list';
 import { OnCreate } from './core-components/directives/on-create-event.directive';
 import { StrLengthPipe } from './core-components/custom-pipes/str-length.pipe';
 
@@ -38,6 +45,9 @@ import { APP_CONFIG, AppConfig } from './app.config';
     FindActorByMoviesPage
   ],
   imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -52,6 +62,10 @@ import { APP_CONFIG, AppConfig } from './app.config';
     ModalContentPage,
     FindActorByMoviesPage
   ],
-  providers: [{ provide: APP_CONFIG, useValue: AppConfig }]
+  providers: [
+    StatusBar,
+    SplashScreen,
+    { provide: APP_CONFIG, useValue: AppConfig }
+  ]
 })
 export class AppModule {}

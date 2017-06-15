@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform} from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MoviesPage } from '../pages/movies/movies';
 import { ActorsPage } from '../pages/actors/actors';
@@ -26,7 +27,7 @@ export class MyApp {
 
   rootPage = FindActorByMoviesPage;
 
-  // List of pages that can be navigated to from the left menu
+  // List of pages that can be navigated from the left menu
   appPages: PageObj[] = [
     { title: 'Home', component: HomePage, icon: 'home' },
     { title: 'Movies', component: MoviesPage, icon: 'film' },
@@ -34,10 +35,10 @@ export class MyApp {
     { title: 'Find Actor by Movies', component: FindActorByMoviesPage , icon: 'person'}
   ];
 
-  constructor(platform: Platform) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
-      StatusBar.styleDefault();
-      Splashscreen.hide();
+      statusBar.styleDefault();
+      splashScreen.hide();
     });
   }
 

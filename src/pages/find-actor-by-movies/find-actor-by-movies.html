@@ -25,10 +25,11 @@
       Selected Movies
     </ion-card-header>
     <ion-list>
-      <ion-item *ngFor="let selectedMovie of selectedMovies" #selectedMovieItem class="selected-movie-item" 
-      (click)="showModal(selectedMovie)">
-        {{ selectedMovie.title }}
-      </ion-item>
+      <card-list [items]="selectedMovies" [showDetails]="false" [showCloseButton]="true"
+              (clickGoToDetails)="goToMovieDetails($event, movie)"
+              (clickRemoveCard)="removeCard($event, movie)"
+      >
+      </card-list>
     </ion-list>    
   </ion-card>
 
@@ -37,9 +38,10 @@
       Possible actors
     </ion-card-header>
     <ion-list>
-      <ion-item id="place-holder-item"  class="place-holder-item">
+      <ion-item *ngIf="actorsFound?.length == 0" id="place-holder-item"  class="place-holder-item">
         Select at least two movies
       </ion-item>
+      <card-list [items]="actorsFound" (clickGoToDetails)="goToActorDetails($event, actorsFound)"></card-list>
     </ion-list>    
   </ion-card>
 
